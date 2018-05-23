@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         
         
         //Configure the button
-        button = dropDownBtn.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        button = dropDownBtn.init(frame: CGRect(x: 10, y: 50, width: 0, height: 0))
         button.setTitle("Colors", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -32,13 +32,15 @@ class ViewController: UIViewController {
         
         //Set the drop down menu's options
         button.dropView.dropDownOptions = ["Blue", "Green", "Magenta", "White", "Black", "Pink"]
-        
+       
     }
 
 }
+
 protocol dropDownProtocol {
     func dropDownPressed(string : String)
 }
+
 class dropDownBtn: UIButton, dropDownProtocol {
     
     func dropDownPressed(string: String) {
@@ -55,7 +57,6 @@ class dropDownBtn: UIButton, dropDownProtocol {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor.darkGray
-        
         dropView = dropDownView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0))
         dropView.delegate = self
         dropView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +85,6 @@ class dropDownBtn: UIButton, dropDownProtocol {
                 self.height.constant = self.dropView.tableView.contentSize.height
             }
             
-            
             NSLayoutConstraint.activate([self.height])
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
@@ -102,7 +102,6 @@ class dropDownBtn: UIButton, dropDownProtocol {
                 self.dropView.center.y -= self.dropView.frame.height / 2
                 self.dropView.layoutIfNeeded()
             }, completion: nil)
-            
         }
     }
     
@@ -177,4 +176,5 @@ class dropDownView: UIView, UITableViewDelegate, UITableViewDataSource  {
     }
     
 }
+
 
